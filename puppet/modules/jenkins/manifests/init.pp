@@ -1,6 +1,6 @@
 class jenkins {
   package {
-    ["jenkins", "maven"]:
+    ["jenkins", "openjdk-7-jdk", "maven"]:
       ensure => installed,
   }
 
