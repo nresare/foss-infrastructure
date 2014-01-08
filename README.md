@@ -20,3 +20,13 @@ unit testing and normalized builds for our Free Software.
 * git clone https://github.com/noaresare/foss-infrastructure
 * cd /var/lib/foss-infrastructure/puppet
 * puppet apply --modulepath ./modules builder.pp
+
+
+## Setting up jenkins
+
+* Access jenkis by an ssh socks proxy on port 8080: ssh -D 1234 <host>
+  (Note that firefox by default excludes localhost from proxying in
+  settings / Advanced)
+* Install plugins "mailer", "javadoc" and "git" in the web ui
+* Restart jenkins to pick up the plugins
+* Configure jdk, maven and git in manage jenkins -> configure system
