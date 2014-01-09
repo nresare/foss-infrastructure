@@ -2,7 +2,14 @@ class jenkins::plugins(
   $plugins
 )
 {
-    create_resources('jenkins::plugin', $plugins)
+  create_resources('jenkins::plugin', $plugins)
+  file { "/var/lib/jenkins/plugins":
+    ensure => directory,
+    mode => 755,
+    owner => 'jenkins',
+    group => 'nogroup',
+    require => Package['jenkins'],
+  }   
 }
 
 define jenkins::plugin(
@@ -27,5 +34,6 @@ define jenkins::plugin(
     owner  => 'jenkins',
     group  => 'nogroup',
     notify => Service['jenkins'],
+    require => File['/var/lib/jenkins/plugins'],
   }
 }
