@@ -13,8 +13,11 @@ class jenkins {
     'javadoc'         => { plugin_version => '1.1' },
     'mailer'          => { plugin_version => '1.8' },
     'maven-plugin'    => { plugin_version => '1.509.2' },
+    'scm-sync-configuration' => { plugin_version => '0.0.7.3' },
+    'subversion'             => { plugin_version => '1.54' },
   }
 
+  service { 'jenkins': ensure => running }
 
   class { 'jenkins::plugins': plugins => $plugins }
 }

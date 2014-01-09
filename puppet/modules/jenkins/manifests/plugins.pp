@@ -26,5 +26,6 @@ define jenkins::plugin(
     ensure => 'file',
     owner  => 'jenkins',
     group  => 'nogroup',
+    notify => Service['jenkins'],
   }
 }
