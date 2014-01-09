@@ -20,4 +20,10 @@ class jenkins {
   service { 'jenkins': ensure => running }
 
   class { 'jenkins::plugins': plugins => $plugins }
+
+  file { '/var/lib/jenkins/.gitconfig':
+    ensure => file,
+    source => 'puppet:///modules/jenkins/jenkins-gitconfig',
+    owner  => 'jenkins',
+  }
 }
