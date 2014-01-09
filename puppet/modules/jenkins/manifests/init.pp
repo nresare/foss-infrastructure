@@ -7,6 +7,7 @@ class jenkins {
 
   $plugins = {
     'git'                    => { plugin_version => '2.0' },
+    'git-client'             => { plugin_version => '1.6.0' },
     'ssh-credentials'        => { plugin_version => '1.6' },
     'scm-api'                => { plugin_version => '0.2' },
     'credentials'            => { plugin_version => '1.9.4' },
