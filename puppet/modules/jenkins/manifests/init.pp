@@ -26,5 +26,6 @@ class jenkins {
     ensure => file,
     source => 'puppet:///modules/jenkins/jenkins-gitconfig',
     owner  => 'jenkins',
+    require => Pacakge['jenkins'],
   }
 }
