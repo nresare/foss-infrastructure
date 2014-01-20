@@ -1,0 +1,11 @@
+# Managed by Puppet
+
+<Location "/">
+ ProxyPass http://localhost:<%= @target_port %>/
+ ProxyPassReverse http://localhost:<%= @target_port %>/
+</Location>
+
+SSLEngine On
+SSLCertificateFile      /etc/apache2/spotify.net_2013.crt
+SSLCertificateKeyFile   /etc/apache2/spotify.net_2013.key
+SSLCertificateChainFile /etc/apache2/spotify.net_2013.ca-bundle
