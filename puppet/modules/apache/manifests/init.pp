@@ -8,7 +8,8 @@ class apache::redirector( $target_port )
     require => Package['apache2'],
   }
 
-  apache::plugin { ['ssl', 'socache_shmcb', 'proxy_http', 'proxy']: }
+  apache::plugin { ['ssl', 'socache_shmcb', 'proxy_http', 'proxy',
+                    'rewrite', 'headers']: }
 
   file { "/etc/apache2/sites-enabled/port_forward_proxy.conf":
     content => template("apache/port_forward_proxy.conf.erb"),
