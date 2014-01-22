@@ -4,7 +4,9 @@ class jenkins {
       ensure => installed,
   }
 
-
+  # the plugin downloader doesn't handle upgrades currently, so you 
+  # need to manually remove the old plugin before the new is downloaded
+  # when upgrading
   $plugins = {
     'git'                    => { plugin_version => '2.0.1' },
     'git-client'             => { plugin_version => '1.6.1' },
@@ -28,4 +30,23 @@ class jenkins {
     owner  => 'jenkins',
     require => Package['jenkins'],
   }
+
+  file { '/var/lib/jenkins/scm-sync-configuration.xml':
+    ensure => file,
+    source => 'puppet:///modules/jenkins/scm-sync-configuration.xml',
+    owner  => 'jenkins',
+    require => Package['jenkins'],
+  }
+
+  $conf = "https://github.com/noaresare/foss-jenkins-config"
+
+  exec { 'jenkins::clone::config':
+    command => "git clone --bare $conf && chown -R jenkins foss-jenkins-config.git",
+    cwd => "/var/lib",
+    creates => "/var/lib/foss-jenkins-config.git",
+    path => "/usr/bin:/bin",
+    require => Package['jenkins'],
+  }
+
+
 }
